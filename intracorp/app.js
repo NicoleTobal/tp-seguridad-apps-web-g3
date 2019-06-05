@@ -9,7 +9,7 @@ const {init}=require('./models/DB');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var {verifyAuthHeader} = require('./segurity/Auth');
+var {verifyAuthHeader} = require('./security/Auth');
 var app = express();
 
 // view engine setup
@@ -23,16 +23,16 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
-// app.use((req, res, next) => {
-//   if (req.originalUrl.includes('/users')) {
-//     verifyAuthHeader(req.headers['x-access-token'], res, next);
-//   } else {
-//     next();
-//   }
-// });
+app.use((req, res, next) => {
+  if (req.originalUrl.includes('/api')) {
+    verifyAuthHeader(req.headers['x-access-token'], res, next);
+  } else {
+    next();
+  }
+});
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

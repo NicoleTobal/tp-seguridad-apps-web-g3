@@ -11,19 +11,21 @@ const verifyAuthHeader = (token, res, next) => {
       if (err) {
         return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
       } else {
-        const user = findUserByIdInDB(decoded ? decoded.id : '');
-        if (!user) {
-          return res.status(404).send("No user found.");
-        } else {
-          next();
-        }
+        let user;
+        findUserByIdInDB(decoded ? decoded.id : '').then(user => {
+          if (!user) {
+            return res.status(404).send("No user found.");
+          } else {
+            next();
+          }
+        });
       }
     });
   }
 }
 
 const login = (username, password, callback) => {
-  findUserByUsernameInDB(username).then((user) => {
+  findUserByUsernameInDB(username).then(user => {
     if (!user) {
       return callback({errCode: 404, errMessage: 'No user found.'});
     }

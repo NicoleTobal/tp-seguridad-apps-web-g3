@@ -4,9 +4,6 @@ const {
   usermodel
 } = require("../models/DB");
 
-const { login} = require("../segurity/Auth")
-// 
-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
@@ -23,14 +20,6 @@ router.get('/', function(req, res, next) {
     });
   }
 
-});
-
-router.post('/login', function (req, res) {
-  console.log(req);
-  login(req.body.username, req.body.password, function (err, data) {
-    if (!data) return res.status(err.errCode).send(err.errMessage);
-    res.status(200).send(data);
-  });
 });
 
 module.exports = router;
