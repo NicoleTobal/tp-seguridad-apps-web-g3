@@ -36,6 +36,7 @@ DB.init();
 restify.serve(router, User, {
     private: ['password'],
 });
+app.use(router);
 
 //views
 app.use('/', viewRoutes);
