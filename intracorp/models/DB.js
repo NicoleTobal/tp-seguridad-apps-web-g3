@@ -1,18 +1,7 @@
-var express = require('express');
 const mongoose = require('mongoose');
-var router = express.Router();
+const User = require("./User.model");
 
 mongoose.connect('mongodb://localhost:27017/intracorp', { useNewUrlParser: true });
-
-// mongoose.deleteModel('User');
-
-const Schema = mongoose.Schema;
-
-const User = mongoose.model('User', new mongoose.Schema({
-    username: String,
-    password: String,
-    email: String
-}));
 
 const initialize = function(){
   User.remove({}, () => {
@@ -28,5 +17,4 @@ const initialize = function(){
   });
 }
 
-module.exports = {init: initialize,
-                  User: User}
+module.exports = {init: initialize}

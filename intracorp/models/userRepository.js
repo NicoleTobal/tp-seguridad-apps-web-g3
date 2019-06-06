@@ -1,8 +1,8 @@
-const { usermodel } = require("./DB");
+const User = require("./User.model");
 
 const findUserByIdInDB = function (id){
   return new Promise((resolve, reject) =>
-   usermodel.findById(id).exec((err, res) => {
+   User.findById(id).exec((err, res) => {
     if (err) reject (err);
     resolve(res);
   }));
@@ -10,7 +10,7 @@ const findUserByIdInDB = function (id){
 
 const findUserByUsernameInDB = function (username){
   return new Promise((resolve, reject) =>
-    usermodel.findOne({username}).exec((err, res) => {
+    User.findOne({username}).exec((err, res) => {
       if (err) reject (err);
       resolve(res);
     }));
