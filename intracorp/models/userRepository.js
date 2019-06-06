@@ -8,7 +8,7 @@ const findUserByIdInDB = function (id){
   }));
 }
 
-const findUserByUsernameInDB = function (username){
+const findUserByUsernameInDB = function (username) {
   return new Promise((resolve, reject) =>
     User.findOne({username}).exec((err, res) => {
       if (err) reject (err);
@@ -16,5 +16,12 @@ const findUserByUsernameInDB = function (username){
     }));
 }
 
-module.exports={findUserByIdInDB,
-  findUserByUsernameInDB};
+const findUserByEmailInDB = function (email) {
+  return User.findOne({email: email});
+}
+
+module.exports={
+  findUserByIdInDB,
+  findUserByUsernameInDB,
+  findUserByEmailInDB
+};

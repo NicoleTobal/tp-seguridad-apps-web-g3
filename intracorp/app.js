@@ -6,8 +6,9 @@ const express = require('express');
 const restify = require('express-restify-mongoose');
 const User = require("./models/User.model");
 const DB = require('./models/DB');
-var indexRouter = require('./routes/index');
 const router = express.Router();
+var viewRoutes = require('./routes/viewRoutes');
+var apiRoutes = require('./routes/apiRoutes');
 var Auth = require('./security/Auth');
 var app = express();
 
@@ -22,7 +23,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  if (req.originalUrl.includes('/api')) {
+  if (req.originalUrl.includes('/api/v1')) {
     Auth.verifyAuthHeader(req.headers, res, next);
   } else {
     next();
@@ -35,10 +36,10 @@ DB.init();
 restify.serve(router, User, {
     private: ['password'],
 });
-app.use(router);
 
 //views
-app.use('/', indexRouter);
+app.use('/', viewRoutes);
+app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -27,20 +27,39 @@ const verifyAuthHeader = (headers, res, next) => {
 }
 
 const login = (username, password, callback) => {
-  userRepository.findUserByUsernameInDB(username).then(user => {
+  userRepository.findUserByUsernameInDB(username).then((user)=>{
     if (!user) {
       return callback({errCode: 404, errMessage: 'Usuario no encontrado.'});
     }
-    const passwordIsValid = password === user.password;
-    if (!passwordIsValid) return callback({errCode: 401, errMessage: { auth: false, token: null }});
-    const token = jwt.sign({ id: user._id, username: user.username }, secret, {
-      expiresIn: 86400 // expires in 24 hours
-    });
-    callback({}, { auth: true, token: token })
-  });
+    user.comparePassword(password, (err,isMatch)=>{
+        if(isMatch){
+          const token = jwt.sign({ id: user._id, username: user.username }, secret, {
+            expiresIn: 86400 // expires in 24 hours
+          });
+          callback({}, { auth: true, token: token })
+        } else {
+          return callback({errCode: 401, errMessage: { auth: false, token: null }});
+        }
+    })
+  }).catch((err)=>{
+    return callback({errCode: 401, errMessage: { auth: false, token: null }});
+  })
+}
+
+const recuperar = (email, callback) => {
+  userRepository.findUserByEmailInDB(email)
+    .then((user)=>{
+      if (user) {
+        return callback(null, true);
+      } else {
+        return callback(null, false);
+      }
+    })
+    .catch(callback)
 }
 
 module.exports = {
   login,
-  verifyAuthHeader
+  verifyAuthHeader,
+  recuperar
 }
