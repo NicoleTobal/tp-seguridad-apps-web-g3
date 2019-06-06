@@ -11,6 +11,10 @@ router.get('/login', function(req, res, next) {
   res.render('login', { });
 });
 
+router.get('/recuperar-password', function(req, res, next) {
+  res.render('recuperar-password', { });
+});
+
 router.post('/api/login', function (req, res) {
   login(req.body.username, req.body.password, function (err, data) {
      console.log("Usuario logueado: " + req.body.username)
