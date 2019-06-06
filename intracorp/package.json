@@ -6,15 +6,15 @@
     "start": "node ./bin/www.js"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "4.16.4",
+    "express-restify-mongoose": "3.0.0",
     "http-errors": "~1.6.3",
-    "method-override": "3.0.0",
-    "mongoose": "5.5.11",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "4.6.8",
     "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11",
-    "body-parser": "^1.18.3",
-    "jsonwebtoken": "^8.4.0"
+    "pug": "2.0.0-beta11"
   }
 }
