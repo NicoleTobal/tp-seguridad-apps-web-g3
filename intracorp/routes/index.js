@@ -7,7 +7,11 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/login', function (req, res) {
+router.get('/login', function(req, res, next) {
+  res.render('login', { });
+});
+
+router.post('/api/login', function (req, res) {
   login(req.body.username, req.body.password, function (err, data) {
      console.log("Usuario logueado: " + req.body.username)
     if (!data) return res.status(err.errCode).send(err.errMessage);
