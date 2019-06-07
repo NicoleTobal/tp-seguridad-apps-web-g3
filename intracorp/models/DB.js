@@ -1,29 +1,20 @@
-var express = require('express');
 const mongoose = require('mongoose');
-var router = express.Router();
+const User = require("./User.model");
 
-mongoose.connect('mongodb://localhost:27017/database', { useNewUrlParser: true });
-
-// mongoose.deleteModel('User');
-
-const Schema = mongoose.Schema;
-
-const mySchema = Schema({username: String, password: String, email: String});
-const usermodel = mongoose.model('User', mySchema);
-
-
+mongoose.connect('mongodb://localhost:27017/intracorp', { useNewUrlParser: true });
 
 const initialize = function(){
-  usermodel.remove({}, () => {
-    usermodel.create([{username: 'laureano', password: '1234', email: "laureano.clausi@gmail.com"},
-    {username: 'nicole', password: '1234', email: "nickytobal@gmail.com"},
-    {username: 'macha', password: '1234', email: "barrimmachado@gmail.com"},
-    {username: 'admin', password: 'admin', email: "admin@admin.com"}], function(err, doc) {
+  User.remove({}, () => {
+    User.create([
+      {username: 'laureano', password: 'lau1234', email: "laureano.clausi@gmail.com"},
+      {username: 'nicole', password: 'nic1234', email: "nickytobal@gmail.com"},
+      {username: 'macha', password: 'mac1234', email: "barrimmachado@gmail.com"},
+      {username: 'admin', password: 'admin', email: "admin@admin.com"}
+   ], function(err, doc) {
       if (err) return next(err);
       console.log(doc);
     });
   });
 }
 
-module.exports = {init: initialize,
-                  usermodel: usermodel}
+module.exports = {init: initialize}
