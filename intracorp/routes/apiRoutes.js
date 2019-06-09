@@ -6,7 +6,7 @@ router.post('/login', function (req, res) {
   auth.login(req.body.username, req.body.password, function (err, data) {
     console.log("Usuario logueado: " + req.body.username)
     if (!data)  return res.redirect('/login?error=' + err.errMessage);
-    return res.redirect('/home');
+    return res.status(200).send(data);
   });
 });
 
