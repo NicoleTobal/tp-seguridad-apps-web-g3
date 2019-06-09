@@ -38,11 +38,11 @@ const login = (username, password, callback) => {
           });
           callback({}, { auth: true, token: token })
         } else {
-          return callback({errCode: 401, errMessage: { auth: false, token: null }});
+          return callback({errCode: 401, errMessage: "Contraseña Invalida"});
         }
     })
   }).catch((err)=>{
-    return callback({errCode: 401, errMessage: { auth: false, token: null }});
+    return callback({errCode: 401, errMessage: "Error" });
   })
 }
 
