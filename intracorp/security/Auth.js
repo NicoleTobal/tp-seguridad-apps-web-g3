@@ -2,7 +2,7 @@ const userRepository = require('../models/userRepository');
 var jwt = require('jsonwebtoken');
 
 const secret = 'superSecreto';
-const authHeader = 'x-access-token';
+const authHeader = 'authorization';
 
 const verifyAuthHeader = (headers, res, next) => {
   var token = headers[authHeader]
