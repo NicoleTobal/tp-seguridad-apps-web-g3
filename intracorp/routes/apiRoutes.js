@@ -4,8 +4,8 @@ const auth = require("../security/Auth")
 
 router.post('/login', function (req, res) {
   auth.login(req.body.username, req.body.password, function (err, data) {
-    console.log("Usuario logueado: " + req.body.username)
-    if (!data)  return res.redirect('/login?error=' + err.errMessage);
+    console.log("Usuario logueado: " + JSON.stringify(req.body))
+    if (!data)  return res.status(500).send(err.errMessage);
     return res.status(200).send(data);
   });
 });
