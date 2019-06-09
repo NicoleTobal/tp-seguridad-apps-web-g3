@@ -7,9 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  let error = "";
-  if (req.query.error) error = req.query.error;
-  res.render('login', { error });
+  res.render('login', { });
 });
 
 router.get('/home', function(req, res, next) {
