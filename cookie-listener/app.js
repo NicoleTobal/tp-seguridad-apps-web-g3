@@ -9,6 +9,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.post('/damecookie', function (req, res) {
+     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+     res.header("Access-Control-Allow-Credentials", "true");
+     res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept");
+     res.header('Access-Control-Allow-Methods', 'POST,GET,PUT,DELETE,OPTIONS')
     var jsonCookies = JSON.stringify(req.cookies);
     console.log("Origin " + req.socket.remoteAddress + "[" + new Date() + "] " + jsonCookies);
     res.status(201).send();
