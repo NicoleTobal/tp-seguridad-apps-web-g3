@@ -19,7 +19,7 @@
 					</div>
 				</div>
 				<div class="d-flex justify-content-center form_container">
-					<form action="/api/login" method="post">
+					<div class="form">
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -39,9 +39,9 @@
 							</div>
 						</div>
 						<div class="d-flex justify-content-center mt-3 login_container">
-							<button type="submit" name="button" class="btn login_btn">Login</button>
+							<button id="form-button">Login</button>
 						</div>
-					</form>
+					</div>
 				</div>
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
@@ -56,5 +56,38 @@
 	</div>
    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script>
+  		function createCookie(name, value, days) {
+		    var expires;
+
+		    if (days) {
+		        var date = new Date();
+		        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+		        expires = "; expires=" + date.toGMTString();
+		    } else {
+		        expires = "";
+		    }
+		    document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
+		}
+
+	   	$("#form-button").on("click", e => {
+			debugger;	
+
+			const username = $("#username").val();
+			const password = $("#password").val();
+
+			const userAndPassword = { username, password };
+
+			const settings = {
+				type: "POST",
+				data: userAndPassword,
+				success: message => {
+					createCookie("Authorization", message.token, 10);
+					window.location.replace("/html/home/user/dashboard/index.html?nombre="+username);
+				}
+			};
+			$.ajax("/api/login", settings);
+	   	})
+   </script>
 </body>
 </html>
