@@ -7,8 +7,15 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login', { });
+  let error = "";
+  if (req.query.error) error = req.query.error;
+  res.render('login', { error });
 });
+
+router.get('/home', function(req, res, next) {
+  res.render('home', { });
+});
+
 
 router.get('/recuperar-password', function(req, res, next) {
   res.render('recuperar-password', { });
