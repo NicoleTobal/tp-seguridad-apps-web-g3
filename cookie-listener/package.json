@@ -1,0 +1,12 @@
+{
+  "name": "cookie-listener",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "express": "4.16.4"
+  }
+}
