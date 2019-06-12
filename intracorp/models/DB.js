@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const User = require("./User.model");
 
-mongoose.connect('mongodb://127.0.0.1:27017/intracorp', { useNewUrlParser: true });
+mongoose.connect('mongodb://mongo:27017/intracorp', { useNewUrlParser: true });
 
 const initialize = function(){
   User.remove({}, () => {
