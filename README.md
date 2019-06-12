@@ -18,8 +18,8 @@
 3) Crear la red virtual en docker
       `docker network create tp-seguridad-web-g3`
 4) Dejar corriendo tanto el servidor como mongod
-      `docker container run --network tp-seguridad-web-g3 -p 27017:27017 --name mongo mongo`
-      `docker container run --network tp-seguridad-web-g3 -p 3000:3000 tp3-seguridad-web-g3-servidorweb`
+      `docker container run --rm --network tp-seguridad-web-g3 -p 27017:27017 --name mongo -e MONGO_INITDB_ROOT_USERNAME='admin' -e MONGO_INITDB_ROOT_PASSWORD=='admin' mongo`
+      `docker container run --rm --network tp-seguridad-web-g3 -p 3000:3000 tp3-seguridad-web-g3-servidorweb`
 5) Para dejar corriendo el robador de cookies hay que crear la imagen, estando en /cookie-listener (de este repositorio) y corriendo
       `docker build . -t tp3-seguridad-web-g3-cookie-listener`
-      `docker container run --network tp-seguridad-web-g3 -p 4000:4000 tp3-seguridad-web-g3-cookie-listener`
+      `docker container run --rm --network tp-seguridad-web-g3 -p 4000:4000 tp3-seguridad-web-g3-cookie-listener`
