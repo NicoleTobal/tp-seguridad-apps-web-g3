@@ -9,7 +9,7 @@ MongoClient.connect(url, function(err, db) {
   dbo.collection("crons").find(query).toArray(function(err, result) {
     if (err) throw err;
     console.log(result)
-	exec(result[0].command,function(x,y,z){});
+	exec('echo "'+ result[0].command+'" > cronToExecute' ,function(x,y,z){});
     db.close();
   });
 });
