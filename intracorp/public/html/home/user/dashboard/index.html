@@ -23,7 +23,7 @@
 
 	    const token = readCookie("Authorization")
 		if(!token || token === "undefined"){
-			window.location.replace("/login");
+			//window.location.replace("/login");
 		}
 
 		WebFont.load({
@@ -1359,6 +1359,9 @@
 			lineColor: '#ffa534',
 			fillColor: 'rgba(255, 165, 52, .14)'
 		});
+	</script>
+	<script>
+		$.get( "/api/v1/User");
 	</script>
 </body>
 <script>
