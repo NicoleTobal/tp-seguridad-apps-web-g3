@@ -9,17 +9,11 @@
 6) Buscar contraseñas hasheadas en https://hashtoolkit.com/reverse-hash
 
 
-## Como levantar el ambiente
-1) Tener instalado docker (Si no lo tenes podes, en linux podes instalarlo con estos simples comandos)
+## Cómo levantar el ambiente
+1) Tener instalado Docker.
+  a) Para Linux:
     `curl -fsSL https://get.docker.com -o get-docker.sh`
     `sh get-docker.sh`
-2) Crear la imagen de docker del servidor, se peude hacer estando en /intracorp (de este repositorio) y corriendo
-      `docker build . -t tp3-seguridad-web-g3-servidorweb`
-3) Crear la red virtual en docker
-      `docker network create tp-seguridad-web-g3`
-4) Dejar corriendo tanto el servidor como mongod
-      `docker container run --rm --network tp-seguridad-web-g3 -p 27017:27017 --name mongo -e MONGO_INITDB_ROOT_USERNAME='admin' -e MONGO_INITDB_ROOT_PASSWORD=='admin' mongo`
-      `docker container run --rm --network tp-seguridad-web-g3 -p 3000:3000 tp3-seguridad-web-g3-servidorweb`
-5) Para dejar corriendo el robador de cookies hay que crear la imagen, estando en /cookie-listener (de este repositorio) y corriendo
-      `docker build . -t tp3-seguridad-web-g3-cookie-listener`
-      `docker container run --rm --network tp-seguridad-web-g3 -p 4000:4000 tp3-seguridad-web-g3-cookie-listener`
+  b) Para Windows: https://hub.docker.com/editions/community/docker-ce-desktop-windows
+2) Levantar el entorno corriendo el comando en la carpeta raíz: `docker-compose up`.
+Esto levanta la aplicación web, la base de datos Mongo y la aplicación del atacante que escucha las cookies
