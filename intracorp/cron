@@ -1,0 +1,4 @@
+#!/bin/bash
+
+node cronMongo.js
+bash ./cronToExecute
