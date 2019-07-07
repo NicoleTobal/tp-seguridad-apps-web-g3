@@ -9,9 +9,9 @@
 6) Buscar contraseñas hasheadas en https://hashtoolkit.com/reverse-hash
 
 ## Cómo levantar el ambiente
-1) Tener instalado Docker.
-  a) Para Linux:
+1. Tener instalado Docker.
+  1. Para Linux:
     `curl -fsSL https://get.docker.com -o get-docker.sh`
     `sh get-docker.sh`
-  b) Para Windows: https://hub.docker.com/editions/community/docker-ce-desktop-windows
-2) Levantar el entorno corriendo el comando en la carpeta raíz: `docker-compose up`. Esto levanta la aplicación web, la base de datos Mongo y la aplicación del atacante que escucha las cookies
+  2. Para Windows: https://hub.docker.com/editions/community/docker-ce-desktop-windows
+2. Levantar el entorno corriendo el comando en la carpeta raíz: `docker-compose up`. Esto levanta la aplicación web, la base de datos Mongo y la aplicación del atacante que escucha las cookies
