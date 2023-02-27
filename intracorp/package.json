@@ -10,7 +10,7 @@
     "debug": "~2.6.9",
     "express": "4.16.4",
     "express-restify-mongoose": "3.0.0",
-    "hbs": "~4.0.4",
+    "hbs": "~4.2.0",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "4.6.8",
